@@ -1,0 +1,45 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update Love Letter heading text, add animated heart, and replace Love Letter narrative",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "summary": "Change Love Letter heading to “Meri Makhan Mishri” and add a gentle floating heart animation with reduced-motion support and decorative semantics.",
+      "acceptanceCriteria": [
+        "The Love Letter section heading displays exactly: \"Meri Makhan Mishri\".",
+        "A heart element is visibly placed next to the \"Meri Makhan Mishri\" heading (not elsewhere in the section).",
+        "The heart has a gentle looping float/pulse-style animation (not flashy or jittery).",
+        "If the user prefers reduced motion, the heart animation is disabled (heart still renders)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProposeDayPage.tsx",
+          "operation": "modify",
+          "description": "Update the Love Letter section heading text to exactly “Meri Makhan Mishri”, and render a decorative heart immediately adjacent to the heading (e.g., within the same h2 layout). Use reduced-motion logic (via existing usePrefersReducedMotion) to conditionally disable the heart’s animation while still rendering the heart; ensure decorative semantics (e.g., aria-hidden) so it does not interfere with heading readability/accessibility."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add a gentle, cinematic-style looping heart float/pulse animation (keyframes + a utility class such as an animate/heart class) that can be toggled off when reduced motion is preferred. Keep animation subtle (smooth translate + slight scale/opacity) and aligned with the existing romantic aesthetic."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Replace the Love Letter section body with the provided new narrative text exactly while keeping existing prose typography.",
+      "acceptanceCriteria": [
+        "The previous Love Letter body paragraphs (the four <p> blocks beginning with \"There are moments in life when words feel inadequate...\") are fully removed/replaced.",
+        "The Love Letter body displays the following text exactly (word-for-word): \"I was searching the long lost peace which I didn't find even in the presence of my parents, but as I grew up I found a lil of it in the temple where I used to act like a complete idiot when  I was a kid. I got into Gods and tales there was a time I used to call myself an Avatar of God, funny right?\n \nIts just I felt like I found myself happy from the very core of my heart when I was unbothered by the world and lost in the peace resides deep in my heart. Its true that I was in the plans of shifting to Himalayas and I used to listen and relate to that song which goes like, 'maybe my soul mate died or I don't have a soul.' I was completely prepared of earning a load of fortune then giving it o my parents and then going to meditate in the caves of Himalaya, and the first step of the plan was to succesfully completing 12th and after that just hustling my ass off to vanish from existence. Luckily you came on the perfect time or else we would've met a couple of years later.\n\nYes even though I would've been in Himalayas  destiny would've brought together again, again and again. It won't stop doing intentional coincidences, planned accidents and heartful mischief cuz for how long can a soul remain away from itself. I used to think that why do people change in love but now I know, people don't change, the change is the outcome of a soul reuniting and becoming one again. The way I am merged in you once and for all my soul.\"",
+        "The Love Letter typography remains consistent with the current styling (prose + readable sizes on mobile/desktop)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProposeDayPage.tsx",
+          "operation": "modify",
+          "description": "Replace the entire Love Letter section body content by removing the existing four paragraph blocks and inserting the user-provided narrative text verbatim (including punctuation, capitalization, spacing, and quoted lyrics). Preserve the current prose/typography styling by keeping the existing prose container and ensuring line breaks/new paragraphs render readably (e.g., whitespace handling) across mobile and desktop."
+        }
+      ]
+    }
+  ]
+}

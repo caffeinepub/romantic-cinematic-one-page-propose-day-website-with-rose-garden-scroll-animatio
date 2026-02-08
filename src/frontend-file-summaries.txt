@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main app component that renders the ProposeDayPage as the single-page experience.",
+  "frontend/src/components/ProposeDayPage.tsx": "Complete one-page Propose Day website with updated Love Letter section heading \"Meri Makhan Mishri\" with animated floating heart icon, replaced narrative text about finding peace and destiny, and five romantic sections featuring warm rose-garden aesthetics with smooth scroll animations and reduced-motion support.",
+  "frontend/src/components/Section.tsx": "Reusable section wrapper component that applies scroll-reveal animations with fade and translate effects to its children, using nullable ref types.",
+  "frontend/src/components/RoseDecorations.tsx": "Decorative layer component that renders corner rose illustrations and a full-page flowing rose petals overlay with 15 animated petals drifting downward using three different animation patterns, with reduced-motion fallback to static petals.",
+  "frontend/src/components/FinalReveal.tsx": "Interactive proposal component with a \"Say Yes\" button that reveals a final romantic message with smooth animations.",
+  "frontend/src/hooks/useScrollReveal.ts": "Custom hook using IntersectionObserver to detect when elements enter the viewport and trigger reveal animations, with reduced-motion support and nullable ref type support.",
+  "frontend/src/hooks/usePrefersReducedMotion.ts": "Custom hook that detects user's prefers-reduced-motion setting for accessibility.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for React Query hooks (minimal as backend has no methods).",
+  "frontend/src/lib/utils.ts": "Utility function for merging Tailwind CSS classes using clsx and tailwind-merge.",
+  "frontend/src/index.css": "Global styles with warm romantic OKLCH color palette, custom rose color utilities, smooth scrolling, teddy bear sway animation, gentle heart float animation keyframes, and three petal-fall animation variations with reduced-motion support.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with romantic fonts (Playfair Display, Lato), custom animations, and romantic shadow utilities.",
+  "frontend/index.html": "HTML entry point with elegant romantic fonts (Playfair Display, Lato) loaded from Google Fonts.",
+  "frontend/src/components/ui/button.tsx": "Shadcn button component with variants for the interactive proposal reveal."
+}

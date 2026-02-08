@@ -1,0 +1,51 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T07:15:20.753Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-14",
+        "summary": "In `frontend/src/components/ProposeDayPage.tsx`, update the Love Letter section heading text from \"My Dearest Love\" to exactly \"Meri Makhan Mishri\", and render a cute floating heart next to the heading with a gentle looping animation that matches the site’s soft cinematic style.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProposeDayPage.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProposeDayPage.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "In `frontend/src/components/ProposeDayPage.tsx`, replace the entire Love Letter section body text (currently starting with \"There are moments in life when words feel inadequate...\") with the user-provided new narrative text, preserving the wording exactly (including punctuation, capitalization, and quoted lyrics).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProposeDayPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProposeDayPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/ProposeDayPage.tsx",
+    "frontend/src/index.css",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Minimal Motoko actor with no methods.",
+  "feature_evidence.json": "Feature evidence report listing two frontend feature modifications and their related files and metadata.",
+  "frontend-file-summaries.txt": "Prewritten summaries describing the purpose of each frontend file in the project.",
+  "frontend/index.css": "Tailwind base and utility layers plus custom OKLCH color variables and reduced‑motion‑aware animations.",
+  "frontend/index.html": "HTML entry point loading romantic fonts and mounting the React app.",
+  "frontend/src/App.tsx": "Root component rendering the ProposeDayPage.",
+  "frontend/src/components/FinalReveal.tsx": "Component that shows a 'Say Yes' button and reveals a final romantic message after interaction.",
+  "frontend/src/components/ProposeDayPage.tsx": "Main page composing all sections, decorations, animations, and updated Love Letter content with floating heart.",
+  "frontend/src/components/RoseDecorations.tsx": "Renders corner roses and animated or static falling petals depending on motion preferences.",
+  "frontend/src/components/Section.tsx": "Wrapper section that triggers scroll‑reveal animations using IntersectionObserver.",
+  "frontend/src/hooks/useActor.ts": "Creates and manages an authenticated or anonymous backend actor, refreshing queries on identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides Internet Identity auth context, loading, login, logout, and identity management logic.",
+  "frontend/src/hooks/usePrefersReducedMotion.ts": "Hook that tracks the user’s prefers‑reduced‑motion setting via media queries.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder for query hooks with no functionality.",
+  "frontend/src/hooks/useScrollReveal.ts": "Hook using IntersectionObserver to reveal elements on scroll, with reduced-motion support.",
+  "frontend/src/index.css": "Tailwind base styles plus custom rose‑themed CSS variables, typography, utilities, and motion/contrast adjustments.",
+  "frontend/src/lib/utils.ts": "Utility function that merges Tailwind classes using clsx and tailwind-merge.",
+  "frontend/src/main.tsx": "App entry point that mounts React, sets up React Query, Internet Identity provider, and global CSS.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme colors, fonts, shadows, animations, and enabling plugins.",
+  "project_state.json": "Project metadata describing current romantic one‑page site design, features, and requirements."
+}

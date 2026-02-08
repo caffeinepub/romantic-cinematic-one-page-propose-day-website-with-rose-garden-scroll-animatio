@@ -1,2 +1,3 @@
-# romantic-cinematic-one-page-propose-day-website-with-rose-garden-scroll-animatio
-Exported from Caffeine project: Romantic cinematic one-page Propose Day website with rose-garden scroll animations
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

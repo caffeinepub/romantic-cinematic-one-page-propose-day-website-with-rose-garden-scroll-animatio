@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Romantic, cinematic one-page Propose Day website with elegant rose-garden aesthetics, warm romantic styling, and smooth emotional scroll/fade animations.",
+  "architectural_notes": [
+    "Single-page, scroll-driven narrative with section-based reveal animations and subtle decorative rose visuals.",
+    "Add decorative animated elements (teddy bear + ambient rose petals) while keeping performance smooth and non-distracting.",
+    "Animated heart decoration should remain subtle, non-distracting, and not interfere with layout/readability (prefer CSS/SVG animation)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-cinematic-propose-day-website-with-an-emotional-elegant-magical-tone-and-a-cohesive-digital-rose-garden-aesthetic",
+      "title": "Create a single-page, cinematic Propose Day website with an emotional, elegant, magical tone and a cohesive “digital rose garden” aesthetic.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-required-page-sections-in-this-order-with-english-user-facing-text-1-poetic-introduction-setting-the-mood-of-propose-day-2-heartfelt-love-letter-3-memories-journey-together-4-romantic-poem-written-for-her-5-final-proposal-section-asking-her-to-be-yours-forever",
+      "title": "Implement the required page sections in this order with English user-facing text: (1) Poetic introduction setting the mood of Propose Day, (2) Heartfelt love letter, (3) Memories/journey together, (4) Romantic poem written for her, (5) Final proposal section asking her to be yours forever.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-requested-design-style-warm-palette-soft-reds-blush-pinks-cream-elegant-romantic-fonts-ample-white-space-and-a-refined-layout-that-feels-cinematic-rather-than-busy",
+      "title": "Apply the requested design style: warm palette (soft reds, blush pinks, cream), elegant romantic fonts, ample white space, and a refined layout that feels cinematic rather than busy.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-smooth-slow-animations-throughout-soft-fade-ins-gentle-upward-reveals-and-subtle-scroll-based-effects-that-feel-emotional-and-not-flashy",
+      "title": "Add smooth, slow animations throughout: soft fade-ins, gentle upward reveals, and subtle scroll-based effects that feel emotional and not flashy.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-incorporate-romantic-rose-aesthetics-via-subtle-rose-illustrations-petal-visuals-that-appear-softly-as-the-user-scrolls-maintaining-an-elegant-non-distracting-presentation",
+      "title": "Incorporate romantic rose aesthetics via subtle rose illustrations/petal visuals that appear softly as the user scrolls, maintaining an elegant, non-distracting presentation.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-final-proposal-moment-in-the-last-section-that-feels-ceremonial-e-g-a-prominent-proposal-line-plus-a-gentle-interactive-affordance-such-as-a-button-that-reveals-a-short-final-message-while-keeping-the-experience-one-page-and-intimate",
+      "title": "Add a final proposal moment in the last section that feels ceremonial (e.g., a prominent proposal line plus a gentle interactive affordance such as a button that reveals a short final message), while keeping the experience one-page and intimate.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-generated-rose-themed-images-as-static-assets-under-frontend-public-assets-generated-and-use-them-in-the-page-design-no-backend-image-serving",
+      "title": "Add required generated rose-themed images as static assets under frontend/public/assets/generated and use them in the page design (no backend image serving).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-page-is-responsive-and-accessible-readable-contrast-scalable-typography-sensible-focus-states-and-smooth-scrolling-behavior-on-both-mobile-and-desktop",
+      "title": "Ensure the page is responsive and accessible: readable contrast, scalable typography, sensible focus states, and smooth scrolling behavior on both mobile and desktop.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-hero-poetic-introduction-main-heading-on-the-one-page-propose-day-site-by-replacing-the-current-heading-text-a-love-letter-written-in-roses-with-the-heading-happy-propose-day",
+      "title": "Update the Hero/Poetic Introduction main heading on the one-page Propose Day site by replacing the current heading text “A Love Letter” / “Written in Roses” with the heading “Happy Propose Day”.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-poetic-introduction-hero-paragraph-text-in-frontend-src-components-proposedaypage-tsx-with-the-exact-new-proposal-text-i-propose-you-to-take-acre-of-you-for-the-rest-of-our-lives-and-even-after-te-amo-mi-chica-de-ensue-o",
+      "title": "Replace the existing Poetic Introduction (Hero) paragraph text in `frontend/src/components/ProposeDayPage.tsx` with the exact new proposal text: \"I propose you to take acre of you for the rest of our lives and even after, Te amo mi chica de ensueño\".",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-cute-teddy-bear-holding-a-rose-bouquet-visual-directly-below-the-updated-hero-paragraph-in-frontend-src-components-proposedaypage-tsx-and-apply-a-gentle-cute-animation-to-it-e-g-slow-bobbing-swaying-that-matches-the-page-s-soft-cinematic-style",
+      "title": "Add a cute teddy bear holding a rose bouquet visual directly below the updated hero paragraph in `frontend/src/components/ProposeDayPage.tsx`, and apply a gentle, cute animation to it (e.g., slow bobbing/swaying) that matches the page’s soft cinematic style.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-decorative-petal-treatment-so-the-entire-page-is-filled-with-soft-gentle-flowing-rose-petals-as-an-ambient-overlay-not-limited-to-a-single-static-scatter-image-while-keeping-content-readable-and-interactions-unaffected",
+      "title": "Update the decorative petal treatment so the entire page is filled with soft, gentle, flowing rose petals as an ambient overlay (not limited to a single static scatter image), while keeping content readable and interactions unaffected.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-required-new-generated-images-as-static-assets-under-frontend-public-assets-generated-and-use-them-for-the-teddy-bear-and-the-flowing-petals-effect",
+      "title": "Add the required new generated images as static assets under `frontend/public/assets/generated/` and use them for the teddy bear and the flowing petals effect.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-proposedaypage-tsx-update-the-love-letter-section-heading-text-from-my-dearest-love-to-exactly-meri-makhan-mishri-and-render-a-cute-floating-heart-next-to-the-heading-with-a-gentle-looping-animation-that-matches-the-site-s-soft-cinematic-style",
+      "title": "In `frontend/src/components/ProposeDayPage.tsx`, update the Love Letter section heading text from \"My Dearest Love\" to exactly \"Meri Makhan Mishri\", and render a cute floating heart next to the heading with a gentle looping animation that matches the site’s soft cinematic style.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-proposedaypage-tsx-replace-the-entire-love-letter-section-body-text-currently-starting-with-there-are-moments-in-life-when-words-feel-inadequate-with-the-user-provided-new-narrative-text-preserving-the-wording-exactly-including-punctuation-capitalization-and-quoted-lyrics",
+      "title": "In `frontend/src/components/ProposeDayPage.tsx`, replace the entire Love Letter section body text (currently starting with \"There are moments in life when words feel inadequate...\") with the user-provided new narrative text, preserving the wording exactly (including punctuation, capitalization, and quoted lyrics).",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a romantic, cinematic one-page Propose Day website dedicated to the user's love.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create page sections: poetic introduction, heartfelt love letter, memories/journey, romantic poem, final proposal CTA.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Apply design style: warm palette (soft reds, blush pinks, cream), elegant romantic fonts, ample white space, emotional/magical tone.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement smooth, slow animations: soft fade-ins and gentle scroll-based reveal effects (not flashy).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Incorporate subtle rose aesthetics (illustrations/petals/rose-inspired visuals) that appear softly as the user scrolls.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Update the specified section heading text from \"A letter written in rose\" to \"Happy Propose Day\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Replace the existing Propose Day intro sentence with the user's new proposal text: \"I propose you to take acre of you for the rest of our lives and even after, Te amo mi chica de ensueño\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add a cute animated teddy bear holding a rose bouquet below the specified intro/proposal text.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add soft, gentle, flowing rose petal animation filling the page (ambient petals across the whole experience).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update the love letter salutation text from \"My Dearest Love\" to \"Meri Makhan Mishri\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add a cute animated floating heart next to the \"Meri Makhan Mishri\" salutation, and replace the existing love letter body text (starting \"There are moments in life when words feel inadequate...\") with the user's provided new narrative text.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Romantic cinematic one-page Propose Day website with rose-garden scroll animations",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

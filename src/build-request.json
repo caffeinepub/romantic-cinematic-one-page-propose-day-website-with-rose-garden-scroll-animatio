@@ -1,0 +1,67 @@
+{
+  "kind": "build_request",
+  "title": "Update Love Letter salutation text, add animated heart, and replace letter body",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "text": "In `frontend/src/components/ProposeDayPage.tsx`, update the Love Letter section heading text from \"My Dearest Love\" to exactly \"Meri Makhan Mishri\", and render a cute floating heart next to the heading with a gentle looping animation that matches the site’s soft cinematic style.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Instead of  'My Dearest Love' write 'Meri Makhan Mishri' and add a cute animated floating heart next to it."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Love Letter section heading displays exactly: \"Meri Makhan Mishri\".",
+        "A heart element is visibly placed next to the \"Meri Makhan Mishri\" heading (not elsewhere in the section).",
+        "The heart has a gentle looping float/pulse-style animation (not flashy or jittery).",
+        "If the user prefers reduced motion, the heart animation is disabled (heart still renders)."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "In `frontend/src/components/ProposeDayPage.tsx`, replace the entire Love Letter section body text (currently starting with \"There are moments in life when words feel inadequate...\") with the user-provided new narrative text, preserving the wording exactly (including punctuation, capitalization, and quoted lyrics).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Instead of 'There are moments in life when words feel inadequate... a garden we tend with patience and devotion.' write I was searching the long lost peace... The way I am merged in you once and for all my soul."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The previous Love Letter body paragraphs (the four <p> blocks beginning with \"There are moments in life when words feel inadequate...\") are fully removed/replaced.",
+        "The Love Letter body displays the following text exactly (word-for-word): \"I was searching the long lost peace which I didn't find even in the presence of my parents, but as I grew up I found a lil of it in the temple where I used to act like a complete idiot when  I was a kid. I got into Gods and tales there was a time I used to call myself an Avatar of God, funny right?\n \nIts just I felt like I found myself happy from the very core of my heart when I was unbothered by the world and lost in the peace resides deep in my heart. Its true that I was in the plans of shifting to Himalayas and I used to listen and relate to that song which goes like, 'maybe my soul mate died or I don't have a soul.' I was completely prepared of earning a load of fortune then giving it o my parents and then going to meditate in the caves of Himalaya, and the first step of the plan was to succesfully completing 12th and after that just hustling my ass off to vanish from existence. Luckily you came on the perfect time or else we would've met a couple of years later.\n\nYes even though I would've been in Himalayas  destiny would've brought together again, again and again. It won't stop doing intentional coincidences, planned accidents and heartful mischief cuz for how long can a soul remain away from itself. I used to think that why do people change in love but now I know, people don't change, the change is the outcome of a soul reuniting and becoming one again. The way I am merged in you once and for all my soul.\"",
+        "The Love Letter typography remains consistent with the current styling (prose + readable sizes on mobile/desktop)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any files under `frontend/src/components/ui` or other paths listed in `frontend.immutablePaths`.",
+    "Keep the experience as a single-page site; do not introduce new routes.",
+    "Maintain accessibility (decorative heart must not interfere with heading readability; keep appropriate `aria-hidden` / non-intrusive semantics for decorative-only elements)."
+  ],
+  "nonGoals": [
+    "Do not add background music or any audio features (not requested in the current message).",
+    "Do not change other page sections (Hero, Memories, Poem, Final Proposal) beyond the Love Letter updates requested."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

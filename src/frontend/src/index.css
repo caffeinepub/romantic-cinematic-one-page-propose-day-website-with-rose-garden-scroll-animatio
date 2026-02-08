@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 1rem;
+        
+        /* Warm romantic rose-garden palette */
+        --background: 0.98 0.015 25;  /* Soft cream */
+        --foreground: 0.25 0.08 15;   /* Deep rose-brown */
+        
+        --card: 0.99 0.01 20;
+        --card-foreground: 0.25 0.08 15;
+        
+        --popover: 0.99 0.01 20;
+        --popover-foreground: 0.25 0.08 15;
+        
+        --primary: 0.55 0.15 15;      /* Rose medium */
+        --primary-foreground: 0.99 0.01 20;
+        
+        --secondary: 0.95 0.02 25;    /* Blush light */
+        --secondary-foreground: 0.35 0.1 15;
+        
+        --muted: 0.96 0.02 20;
+        --muted-foreground: 0.5 0.08 15;
+        
+        --accent: 0.92 0.04 20;       /* Soft blush */
+        --accent-foreground: 0.35 0.1 15;
+        
+        --destructive: 0.55 0.22 15;
+        --destructive-foreground: 0.99 0.01 20;
+        
+        --border: 0.88 0.03 20;
+        --input: 0.88 0.03 20;
+        --ring: 0.55 0.15 15;
+        
+        /* Custom rose palette tokens */
+        --rose-deep: 0.35 0.12 15;
+        --rose-medium: 0.55 0.15 15;
+        --rose-dark: 0.4 0.1 15;
+        --rose-soft: 0.92 0.04 20;
+        --cream: 0.98 0.015 25;
+        --blush-light: 0.95 0.02 25;
+    }
+
+    .dark {
+        --background: 0.2 0.05 15;
+        --foreground: 0.98 0.015 25;
+        
+        --card: 0.25 0.06 15;
+        --card-foreground: 0.98 0.015 25;
+        
+        --popover: 0.22 0.055 15;
+        --popover-foreground: 0.98 0.015 25;
+        
+        --primary: 0.75 0.12 15;
+        --primary-foreground: 0.2 0.05 15;
+        
+        --secondary: 0.3 0.07 15;
+        --secondary-foreground: 0.98 0.015 25;
+        
+        --muted: 0.28 0.065 15;
+        --muted-foreground: 0.7 0.08 15;
+        
+        --accent: 0.4 0.1 15;
+        --accent-foreground: 0.98 0.015 25;
+        
+        --destructive: 0.6 0.2 15;
+        --destructive-foreground: 0.98 0.015 25;
+        
+        --border: 0.3 0.07 15;
+        --input: 0.3 0.07 15;
+        --ring: 0.65 0.12 15;
+        
+        --rose-deep: 0.75 0.12 15;
+        --rose-medium: 0.65 0.12 15;
+        --rose-dark: 0.7 0.1 15;
+        --rose-soft: 0.4 0.1 15;
+        --cream: 0.25 0.06 15;
+        --blush-light: 0.3 0.07 15;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Georgia', 'Garamond', 'Times New Roman', serif;
+        font-size: 16px;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Focus visible styles for accessibility */
+    *:focus-visible {
+        @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    }
+    
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer utilities {
+    /* Custom color utilities */
+    .text-rose-deep {
+        color: oklch(var(--rose-deep));
+    }
+    
+    .text-rose-medium {
+        color: oklch(var(--rose-medium));
+    }
+    
+    .text-rose-dark {
+        color: oklch(var(--rose-dark));
+    }
+    
+    .text-rose-soft {
+        color: oklch(var(--rose-soft));
+    }
+    
+    .bg-rose-deep {
+        background-color: oklch(var(--rose-deep));
+    }
+    
+    .bg-rose-medium {
+        background-color: oklch(var(--rose-medium));
+    }
+    
+    .bg-rose-soft {
+        background-color: oklch(var(--rose-soft));
+    }
+    
+    .bg-cream {
+        background-color: oklch(var(--cream));
+    }
+    
+    .bg-blush-light {
+        background-color: oklch(var(--blush-light));
+    }
+    
+    .from-cream {
+        --tw-gradient-from: oklch(var(--cream)) var(--tw-gradient-from-position);
+    }
+    
+    .via-blush-light {
+        --tw-gradient-via: oklch(var(--blush-light)) var(--tw-gradient-via-position);
+    }
+    
+    .to-rose-soft {
+        --tw-gradient-to: oklch(var(--rose-soft)) var(--tw-gradient-to-position);
+    }
+    
+    .border-rose-medium {
+        border-color: oklch(var(--rose-medium));
+    }
+    
+    /* Animation utilities */
+    .transition-slow {
+        transition-duration: 1000ms;
+    }
+    
+    .transition-slower {
+        transition-duration: 1500ms;
+    }
+    
+    .transition-slowest {
+        transition-duration: 2000ms;
+    }
+    
+    /* Teddy bear gentle sway animation */
+    @keyframes teddy-sway {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        25% {
+            transform: translateY(-8px) rotate(2deg);
+        }
+        50% {
+            transform: translateY(-12px) rotate(0deg);
+        }
+        75% {
+            transform: translateY(-8px) rotate(-2deg);
+        }
+    }
+    
+    .animate-teddy-sway {
+        animation: teddy-sway 4s ease-in-out infinite;
+    }
+    
+    /* Gentle floating heart animation */
+    @keyframes heart-float {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+            opacity: 0.9;
+        }
+        50% {
+            transform: translateY(-10px) scale(1.1);
+            opacity: 1;
+        }
+    }
+    
+    .animate-heart-float {
+        animation: heart-float 2.5s ease-in-out infinite;
+    }
+    
+    /* Flowing petal animations - three variations */
+    @keyframes petal-fall-1 {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.3;
+        }
+        90% {
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateY(110vh) translateX(30px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes petal-fall-2 {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.3;
+        }
+        90% {
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateY(110vh) translateX(-40px) rotate(-360deg);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes petal-fall-3 {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.3;
+        }
+        50% {
+            transform: translateY(55vh) translateX(20px) rotate(180deg) scale(0.8);
+        }
+        90% {
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateY(110vh) translateX(-20px) rotate(360deg) scale(1);
+            opacity: 0;
+        }
+    }
+}
