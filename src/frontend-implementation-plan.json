@@ -1,42 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Swap background audio to 'Chaar Kadam' (male portion) and add play fade-in",
+  "title": "Remove background music from Propose Day page",
   "requirements": [
     {
-      "id": "REQ-20",
-      "summary": "Replace ProposeDayPage background audio with a licensed static 'Chaar Kadam' (male-sung portion) track under frontend/public/assets/audio/ and wire it into the existing <audio> element.",
+      "id": "REQ-22",
+      "summary": "Remove all background music element and related play/pause, mute, volume, and fade-in state/effects/helpers from ProposeDayPage.",
       "acceptanceCriteria": [
-        "A single audio file containing the male-sung portion of “Chaar Kadam” exists under `frontend/public/assets/audio/`.",
-        "`frontend/src/components/ProposeDayPage.tsx` references the new static audio asset path in the `<audio>` element `src` attribute.",
-        "Clicking the existing Play button plays the new “Chaar Kadam” (male part) audio in a loop, and Pause stops playback."
+        "`frontend/src/components/ProposeDayPage.tsx` no longer renders an `<audio>` element (e.g., the one currently using `src=\"/assets/audio/chaar-kadam-male-portion.mp3\"`).",
+        "All music-related React state, refs, effects, and helper functions are removed (e.g., `isPlaying`, `volume`, `isMuted`, `audioRef`, `fadeIntervalRef`, `fadeInAudio`, `togglePlay`, `toggleMute`, `handleVolumeChange`).",
+        "The page builds without TypeScript/ESLint errors and has no unused imports related to music controls (e.g., `Play`, `Pause`, `Volume2`, `VolumeX`, `Button`, `Slider` if they become unused)."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/audio/chaar-kadam-male-portion.mp3",
-          "operation": "create",
-          "description": "Add the single, licensed audio file containing ONLY the male-sung portion of “Chaar Kadam”. Ensure you have legal rights to embed/distribute this asset and keep it as a static file under frontend/public/assets/audio/."
-        },
-        {
           "path": "frontend/src/components/ProposeDayPage.tsx",
           "operation": "modify",
-          "description": "Update the existing <audio> element src from the current propose-day-song.mp3 to `/assets/audio/chaar-kadam-male-portion.mp3`, keeping loop and existing Play/Pause behavior user-initiated (no autoplay)."
+          "description": "Delete the `<audio>` element and all audio/mute/volume/fade logic (state, refs, effects, helpers). Clean up imports so only non-music React hooks and icons remain. Do not edit any files under `frontend/src/components/ui` (immutable constraint)."
         }
       ]
     },
     {
-      "id": "REQ-21",
-      "summary": "Implement a subtle, user-initiated fade-in ramp for audio volume on Play that respects mute/volume state and reduced-motion preference.",
+      "id": "REQ-23",
+      "summary": "Remove the fixed on-screen music controls panel (buttons/sliders and related labels) from ProposeDayPage.",
       "acceptanceCriteria": [
-        "When the user presses Play, the music starts at (or near) 0 volume and fades up smoothly to the current target volume within ~1–3 seconds.",
-        "The fade-in respects the current volume slider value and mute state (i.e., if muted, playback remains silent).",
-        "If `prefers-reduced-motion` is enabled, the fade-in is either disabled or shortened to avoid motion/discomfort while still starting playback correctly."
+        "The fixed bottom-right music control panel is no longer rendered.",
+        "There is no user-facing text or aria-labels related to music playback (e.g., \"Play music\", \"Pause music\", \"Mute\", \"Unmute\", \"Volume\").",
+        "The rest of the page layout (hero, teddy bear visual, love letter section, final proposal section, footer, rose decorations) remains present and visually consistent."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/ProposeDayPage.tsx",
           "operation": "modify",
-          "description": "Enhance Play behavior to apply a fade-in: on Play, set the audio element volume to ~0 (or stay at 0 if muted/volume=0), start playback, then ramp volume up to the effective target (respecting current slider + mute) over ~1–3 seconds using a cancellable timer/animation (e.g., requestAnimationFrame). Cancel the fade if Pause is pressed mid-ramp; if prefersReducedMotion is true, disable or shorten the ramp while still starting playback correctly."
+          "description": "Remove the fixed bottom-right music controls UI markup and any remaining references to music-related aria-labels/text. Ensure the remaining sections (hero/teddy, love letter, final proposal, footer, rose decorations) are unchanged aside from music removal; avoid changes to romantic content and decorative visuals beyond this scope."
         }
       ]
     }

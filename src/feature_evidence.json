@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-current-background-audio-track-used-by-the-audio-element-in-frontend-src-components-proposedaypage-tsx-currently-src-assets-audio-propose-day-song-mp3-with-an-audio-file-that-contains-the-song-chaar-kadam-using-the-male-sung-portion-of-the-lyrics-stored-as-a-static-asset-under-frontend-public-assets-audio",
-      "featureTitle": "Replace the current background audio track used by the <audio> element in `frontend/src/components/ProposeDayPage.tsx` (currently `src=\"/assets/audio/propose-day-song.mp3\"`) with an audio file that contains the song “Chaar Kadam” using the male-sung portion of the lyrics, stored as a static asset under `frontend/public/assets/audio/`.",
+      "featureId": "feature-remove-all-background-music-functionality-from-frontend-src-components-proposedaypage-tsx-including-the-audio-element-and-all-play-pause-mute-volume-and-fade-in-logic-state",
+      "featureTitle": "Remove all background music functionality from `frontend/src/components/ProposeDayPage.tsx`, including the `<audio>` element and all play/pause, mute, volume, and fade-in logic/state.",
       "files": [
         "frontend/src/components/ProposeDayPage.tsx"
       ],
@@ -15,13 +15,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-20"
+        "REQ-22"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-subtle-fade-in-effect-when-music-playback-starts-from-the-play-button-in-frontend-src-components-proposedaypage-tsx-so-the-audio-ramps-from-silence-to-the-user-s-current-effective-volume-respecting-mute-volume-state-and-reduced-motion-preference-over-a-short-duration",
-      "featureTitle": "Add a subtle fade-in effect when music playback starts from the Play button in `frontend/src/components/ProposeDayPage.tsx`, so the audio ramps from silence to the user’s current effective volume (respecting mute/volume state and reduced-motion preference) over a short duration.",
+      "featureId": "feature-remove-the-fixed-on-screen-music-controls-ui-from-frontend-src-components-proposedaypage-tsx-so-there-are-no-music-related-buttons-or-sliders-visible-anywhere-on-the-page",
+      "featureTitle": "Remove the fixed on-screen music controls UI from `frontend/src/components/ProposeDayPage.tsx` so there are no music-related buttons or sliders visible anywhere on the page.",
       "files": [
         "frontend/src/components/ProposeDayPage.tsx"
       ],
@@ -33,7 +33,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-21"
+        "REQ-23"
       ],
       "confidence": "high"
     }

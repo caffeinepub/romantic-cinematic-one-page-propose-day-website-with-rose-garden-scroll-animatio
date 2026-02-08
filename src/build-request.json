@@ -1,54 +1,51 @@
 {
   "kind": "build_request",
-  "title": "Use 'Chaar Kadam' (male-sung portion) as background audio with fade-in on play",
+  "title": "Remove background music from the Propose Day page",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-20",
-      "text": "Replace the current background audio track used by the <audio> element in `frontend/src/components/ProposeDayPage.tsx` (currently `src=\"/assets/audio/propose-day-song.mp3\"`) with an audio file that contains the song “Chaar Kadam” using the male-sung portion of the lyrics, stored as a static asset under `frontend/public/assets/audio/`.",
+      "id": "REQ-22",
+      "text": "Remove all background music functionality from `frontend/src/components/ProposeDayPage.tsx`, including the `<audio>` element and all play/pause, mute, volume, and fade-in logic/state.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-6"
         ],
         "quotes": [
-          "i want the song chaar kadam in the background, the male part of lyrics sung."
+          "remove the music"
         ]
       },
       "acceptanceCriteria": [
-        "A single audio file containing the male-sung portion of “Chaar Kadam” exists under `frontend/public/assets/audio/`.",
-        "`frontend/src/components/ProposeDayPage.tsx` references the new static audio asset path in the `<audio>` element `src` attribute.",
-        "Clicking the existing Play button plays the new “Chaar Kadam” (male part) audio in a loop, and Pause stops playback."
+        "`frontend/src/components/ProposeDayPage.tsx` no longer renders an `<audio>` element (e.g., the one currently using `src=\"/assets/audio/chaar-kadam-male-portion.mp3\"`).",
+        "All music-related React state, refs, effects, and helper functions are removed (e.g., `isPlaying`, `volume`, `isMuted`, `audioRef`, `fadeIntervalRef`, `fadeInAudio`, `togglePlay`, `toggleMute`, `handleVolumeChange`).",
+        "The page builds without TypeScript/ESLint errors and has no unused imports related to music controls (e.g., `Play`, `Pause`, `Volume2`, `VolumeX`, `Button`, `Slider` if they become unused)."
       ]
     },
     {
-      "id": "REQ-21",
-      "text": "Add a subtle fade-in effect when music playback starts from the Play button in `frontend/src/components/ProposeDayPage.tsx`, so the audio ramps from silence to the user’s current effective volume (respecting mute/volume state and reduced-motion preference) over a short duration.",
+      "id": "REQ-23",
+      "text": "Remove the fixed on-screen music controls UI from `frontend/src/components/ProposeDayPage.tsx` so there are no music-related buttons or sliders visible anywhere on the page.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-6"
         ],
         "quotes": [
-          "and yes i would appreciate the fade eefect"
+          "remove the music"
         ]
       },
       "acceptanceCriteria": [
-        "When the user presses Play, the music starts at (or near) 0 volume and fades up smoothly to the current target volume within ~1–3 seconds.",
-        "The fade-in respects the current volume slider value and mute state (i.e., if muted, playback remains silent).",
-        "If `prefers-reduced-motion` is enabled, the fade-in is either disabled or shortened to avoid motion/discomfort while still starting playback correctly."
+        "The fixed bottom-right music control panel is no longer rendered.",
+        "There is no user-facing text or aria-labels related to music playback (e.g., \"Play music\", \"Pause music\", \"Mute\", \"Unmute\", \"Volume\").",
+        "The rest of the page layout (hero, teddy bear visual, love letter section, final proposal section, footer, rose decorations) remains present and visually consistent."
       ]
     }
   ],
   "constraints": [
-    "Do not add any backend logic; keep audio as a static frontend asset under `frontend/public/assets/audio/`.",
-    "Do not rely on autoplay; playback must be user-initiated via the existing Play control to avoid browser autoplay restrictions.",
-    "Ensure you have the legal right/license to embed and distribute the “Chaar Kadam” audio file used in the site."
+    "Do not edit files under `frontend/src/components/ui` or any other paths listed as immutable in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "Building a lyrics display/karaoke feature.",
-    "Adding third-party streaming integrations (Spotify/YouTube/etc.).",
-    "Implementing downloads or sharing/export of the audio file."
+    "Do not add any new audio, music controls, or alternative sound effects.",
+    "Do not change the existing romantic content, section order, or decorative visuals beyond removing music-related UI/logic."
   ],
   "imageRequirements": {
     "required": [],

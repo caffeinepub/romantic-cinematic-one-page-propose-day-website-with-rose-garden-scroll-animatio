@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T09:04:42.299Z",
+  "generatedAt": "2026-02-08T09:18:01.890Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,11 +11,10 @@
     "implemented": 2,
     "items": [
       {
-        "id": "REQ-20",
-        "summary": "Replace the current background audio track used by the <audio> element in `frontend/src/components/ProposeDayPage.tsx` (currently `src=\"/assets/audio/propose-day-song.mp3\"`) with an audio file that contains the song “Chaar Kadam” using the male-sung portion of the lyrics, stored as a static asset under `frontend/public/assets/audio/`.",
+        "id": "REQ-22",
+        "summary": "Remove all background music functionality from `frontend/src/components/ProposeDayPage.tsx`, including the `<audio>` element and all play/pause, mute, volume, and fade-in logic/state.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/audio/chaar-kadam-male-portion.mp3",
           "frontend/src/components/ProposeDayPage.tsx"
         ],
         "matchedFiles": [
@@ -23,8 +22,8 @@
         ]
       },
       {
-        "id": "REQ-21",
-        "summary": "Add a subtle fade-in effect when music playback starts from the Play button in `frontend/src/components/ProposeDayPage.tsx`, so the audio ramps from silence to the user’s current effective volume (respecting mute/volume state and reduced-motion preference) over a short duration.",
+        "id": "REQ-23",
+        "summary": "Remove the fixed on-screen music controls UI from `frontend/src/components/ProposeDayPage.tsx` so there are no music-related buttons or sliders visible anywhere on the page.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/ProposeDayPage.tsx"

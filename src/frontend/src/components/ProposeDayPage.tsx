@@ -1,108 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Section from './Section';
 import RoseDecorations from './RoseDecorations';
 import FinalReveal from './FinalReveal';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
-import { Heart, Play, Pause, Volume2, VolumeX } from 'lucide-react';
-import { Button } from './ui/button';
-import { Slider } from './ui/slider';
+import { Heart } from 'lucide-react';
 
 export default function ProposeDayPage() {
   const [showFinalMessage, setShowFinalMessage] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
-  
-  // Music controls state
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [isMuted, setIsMuted] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const fadeIntervalRef = useRef<number | null>(null);
-
-  // Update audio volume when volume state changes
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = isMuted ? 0 : volume;
-    }
-  }, [volume, isMuted]);
-
-  // Cleanup fade interval on unmount
-  useEffect(() => {
-    return () => {
-      if (fadeIntervalRef.current !== null) {
-        cancelAnimationFrame(fadeIntervalRef.current);
-      }
-    };
-  }, []);
-
-  const fadeInAudio = () => {
-    if (!audioRef.current) return;
-
-    const targetVolume = isMuted ? 0 : volume;
-    
-    // If reduced motion is preferred, skip fade or use very short duration
-    const fadeDuration = prefersReducedMotion ? 300 : 2000; // 0.3s vs 2s
-    const startTime = performance.now();
-    const startVolume = 0;
-
-    const animate = (currentTime: number) => {
-      if (!audioRef.current) return;
-
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / fadeDuration, 1);
-      
-      // Ease-in-out curve for smoother fade
-      const easedProgress = progress < 0.5
-        ? 2 * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-      const currentVolume = startVolume + (targetVolume - startVolume) * easedProgress;
-      audioRef.current.volume = currentVolume;
-
-      if (progress < 1) {
-        fadeIntervalRef.current = requestAnimationFrame(animate);
-      } else {
-        fadeIntervalRef.current = null;
-      }
-    };
-
-    // Cancel any existing fade
-    if (fadeIntervalRef.current !== null) {
-      cancelAnimationFrame(fadeIntervalRef.current);
-    }
-
-    // Start fade-in
-    audioRef.current.volume = 0;
-    fadeIntervalRef.current = requestAnimationFrame(animate);
-  };
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        // Cancel fade if pausing mid-fade
-        if (fadeIntervalRef.current !== null) {
-          cancelAnimationFrame(fadeIntervalRef.current);
-          fadeIntervalRef.current = null;
-        }
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-        fadeInAudio();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-  };
-
-  const handleVolumeChange = (values: number[]) => {
-    const newVolume = values[0];
-    setVolume(newVolume);
-    if (newVolume > 0 && isMuted) {
-      setIsMuted(false);
-    }
-  };
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -119,58 +24,6 @@ export default function ProposeDayPage() {
       
       {/* Rose decorations */}
       <RoseDecorations />
-
-      {/* Audio element */}
-      <audio
-        ref={audioRef}
-        src="/assets/audio/chaar-kadam-male-portion.mp3"
-        loop
-        onEnded={() => setIsPlaying(false)}
-      />
-
-      {/* Music Controls - Fixed position */}
-      <div className="fixed bottom-6 right-6 z-50 bg-white/90 backdrop-blur-sm rounded-2xl shadow-romantic p-4 border border-rose-medium/20">
-        <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={togglePlay}
-            aria-label={isPlaying ? 'Pause music' : 'Play music'}
-            className="h-10 w-10 rounded-full hover:bg-rose-soft/50 text-rose-deep"
-          >
-            {isPlaying ? (
-              <Pause className="h-5 w-5" />
-            ) : (
-              <Play className="h-5 w-5" />
-            )}
-          </Button>
-          
-          <div className="flex items-center gap-2 min-w-[120px]">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleMute}
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
-              className="h-8 w-8 rounded-full hover:bg-rose-soft/50 text-rose-deep"
-            >
-              {isMuted || volume === 0 ? (
-                <VolumeX className="h-4 w-4" />
-              ) : (
-                <Volume2 className="h-4 w-4" />
-              )}
-            </Button>
-            
-            <Slider
-              value={[isMuted ? 0 : volume]}
-              onValueChange={handleVolumeChange}
-              max={1}
-              step={0.01}
-              className="w-20"
-              aria-label="Volume"
-            />
-          </div>
-        </div>
-      </div>
 
       {/* Main content */}
       <main className="relative z-10">

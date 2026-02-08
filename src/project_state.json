@@ -1,17 +1,13 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
-  "summary": "Romantic, cinematic one-page Propose Day website with elegant rose-garden aesthetics, warm romantic styling, smooth emotional scroll/fade animations, with a user-controlled background music element specifically using the song \"Chaar Kadam\" (male-sung portion) and a subtle fade-in when playback starts.",
+  "projectStateVersion": 19,
+  "summary": "Romantic, cinematic one-page Propose Day website with elegant rose-garden aesthetics, warm romantic styling, smooth emotional scroll/fade animations, and subtle ambient decorative elements (e.g., teddy bear and rose petals) while keeping performance smooth and non-distracting.",
   "architectural_notes": [
     "Single-page, scroll-driven narrative with section-based reveal animations and subtle decorative rose visuals.",
     "Add decorative animated elements (teddy bear + ambient rose petals) while keeping performance smooth and non-distracting.",
-    "Animated heart decoration should remain subtle, non-distracting, and not interfere with layout/readability (prefer CSS/SVG animation).",
-    "If adding background music, provide user controls (play/pause, mute/volume) and avoid forced autoplay where blocked; ensure it doesn’t interfere with readability/performance.",
-    "When background music playback begins, apply a brief audio fade-in (ramp volume up smoothly) to avoid abrupt start."
+    "Animated heart decoration should remain subtle, non-distracting, and not interfere with layout/readability (prefer CSS/SVG animation)."
   ],
-  "known_issues": [
-    "Using the commercial track \"Chaar Kadam\" may require licensing/permission; confirm legal right to embed/distribute the audio file."
-  ],
+  "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
@@ -181,6 +177,22 @@
         "REQ-21"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-remove-all-background-music-functionality-from-frontend-src-components-proposedaypage-tsx-including-the-audio-element-and-all-play-pause-mute-volume-and-fade-in-logic-state",
+      "title": "Remove all background music functionality from `frontend/src/components/ProposeDayPage.tsx`, including the `<audio>` element and all play/pause, mute, volume, and fade-in logic/state.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-fixed-on-screen-music-controls-ui-from-frontend-src-components-proposedaypage-tsx-so-there-are-no-music-related-buttons-or-sliders-visible-anywhere-on-the-page",
+      "title": "Remove the fixed on-screen music controls UI from `frontend/src/components/ProposeDayPage.tsx` so there are no music-related buttons or sliders visible anywhere on the page.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -259,18 +271,6 @@
     {
       "id": "AR-13",
       "summary": "Replace the current Propose Day question/paragraph text (“Today, on this Propose Day, I ask you the question…”) with the provided Hindi lines: \"Bin puchhe mera naam aur pata / Rasmon ko rakh ke pare / Chaar kadam bas chaar kadam / Chal do na saath mere\".",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-14",
-      "summary": "Add a song/audio track to the one-page Propose Day website (e.g., background music with user-controlled play/pause and volume).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-15",
-      "summary": "Use the song \"Chaar Kadam\" as the background track (male-sung portion) and add a subtle fade-in effect when the song starts playing.",
       "reqIds": [],
       "status": "pending"
     }
