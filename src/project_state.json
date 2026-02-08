@@ -1,13 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
-  "summary": "Romantic, cinematic one-page Propose Day website with elegant rose-garden aesthetics, warm romantic styling, and smooth emotional scroll/fade animations.",
+  "projectStateVersion": 17,
+  "summary": "Romantic, cinematic one-page Propose Day website with elegant rose-garden aesthetics, warm romantic styling, smooth emotional scroll/fade animations, with a user-controlled background music element specifically using the song \"Chaar Kadam\" (male-sung portion) and a subtle fade-in when playback starts.",
   "architectural_notes": [
     "Single-page, scroll-driven narrative with section-based reveal animations and subtle decorative rose visuals.",
     "Add decorative animated elements (teddy bear + ambient rose petals) while keeping performance smooth and non-distracting.",
-    "Animated heart decoration should remain subtle, non-distracting, and not interfere with layout/readability (prefer CSS/SVG animation)."
+    "Animated heart decoration should remain subtle, non-distracting, and not interfere with layout/readability (prefer CSS/SVG animation).",
+    "If adding background music, provide user controls (play/pause, mute/volume) and avoid forced autoplay where blocked; ensure it doesn’t interfere with readability/performance.",
+    "When background music playback begins, apply a brief audio fade-in (ramp volume up smoothly) to avoid abrupt start."
   ],
-  "known_issues": [],
+  "known_issues": [
+    "Using the commercial track \"Chaar Kadam\" may require licensing/permission; confirm legal right to embed/distribute the audio file."
+  ],
   "isFixRequest": false,
   "existing_features": [
     {
@@ -129,6 +133,54 @@
         "REQ-15"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-proposedaypage-tsx-remove-the-entire-memories-section-block-that-renders-the-section-heading-our-journey-together-including-its-subsections-the-beginning-growing-together-and-this-moment-so-it-no-longer-appears-anywhere-in-the-one-page-flow",
+      "title": "In `frontend/src/components/ProposeDayPage.tsx`, remove the entire \"Memories Section\" block that renders the section heading \"Our Journey Together\" (including its subsections \"The Beginning\", \"Growing Together\", and \"This Moment\") so it no longer appears anywhere in the one-page flow.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-proposedaypage-tsx-remove-the-entire-poem-section-block-that-renders-the-section-heading-a-poem-for-you-including-all-poem-stanza-content-so-it-no-longer-appears-anywhere-in-the-one-page-flow",
+      "title": "In `frontend/src/components/ProposeDayPage.tsx`, remove the entire \"Poem Section\" block that renders the section heading \"A Poem for You\" (including all poem stanza content) so it no longer appears anywhere in the one-page flow.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-proposedaypage-tsx-in-the-final-proposal-section-under-the-heading-will-you-be-mine-replace-the-existing-paragraph-text-that-starts-with-today-on-this-propose-day-i-ask-you-the-question-with-the-exact-user-provided-lines-preserve-wording-and-line-breaks-exactly-bin-puchhe-mera-naam-aur-pata-rasmon-ko-rakh-ke-pare-chaar-kadam-bas-chaar-kadam-chal-do-na-saath-mere",
+      "title": "In `frontend/src/components/ProposeDayPage.tsx`, in the Final Proposal section under the heading \"Will You Be Mine?\", replace the existing paragraph text that starts with \"Today, on this Propose Day, I ask you the question...\" with the exact user-provided lines (preserve wording and line breaks exactly):\n\n\"Bin puchhe mera naam aur pata\nRasmon ko rakh ke pare\nChaar kadam bas chaar kadam\nChal do na saath mere\"",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-user-controlled-background-song-to-the-one-page-propose-day-website-by-including-an-audio-file-as-a-static-asset-and-integrating-a-compact-music-control-ui-play-pause-and-volume-into-frontend-src-components-proposedaypage-tsx-without-disrupting-the-existing-cinematic-layout",
+      "title": "Add a user-controlled background song to the one-page Propose Day website by including an audio file as a static asset and integrating a compact music control UI (play/pause and volume) into `frontend/src/components/ProposeDayPage.tsx` without disrupting the existing cinematic layout.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-background-audio-track-used-by-the-audio-element-in-frontend-src-components-proposedaypage-tsx-currently-src-assets-audio-propose-day-song-mp3-with-an-audio-file-that-contains-the-song-chaar-kadam-using-the-male-sung-portion-of-the-lyrics-stored-as-a-static-asset-under-frontend-public-assets-audio",
+      "title": "Replace the current background audio track used by the <audio> element in `frontend/src/components/ProposeDayPage.tsx` (currently `src=\"/assets/audio/propose-day-song.mp3\"`) with an audio file that contains the song “Chaar Kadam” using the male-sung portion of the lyrics, stored as a static asset under `frontend/public/assets/audio/`.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-subtle-fade-in-effect-when-music-playback-starts-from-the-play-button-in-frontend-src-components-proposedaypage-tsx-so-the-audio-ramps-from-silence-to-the-user-s-current-effective-volume-respecting-mute-volume-state-and-reduced-motion-preference-over-a-short-duration",
+      "title": "Add a subtle fade-in effect when music playback starts from the Play button in `frontend/src/components/ProposeDayPage.tsx`, so the audio ramps from silence to the user’s current effective volume (respecting mute/volume state and reduced-motion preference) over a short duration.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -195,6 +247,30 @@
     {
       "id": "AR-11",
       "summary": "Add a cute animated floating heart next to the \"Meri Makhan Mishri\" salutation, and replace the existing love letter body text (starting \"There are moments in life when words feel inadequate...\") with the user's provided new narrative text.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Remove the \"Our Journey Together\" (memories/journey) section and the \"A Poem for You\" (romantic poem) section from the one-page flow.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Replace the current Propose Day question/paragraph text (“Today, on this Propose Day, I ask you the question…”) with the provided Hindi lines: \"Bin puchhe mera naam aur pata / Rasmon ko rakh ke pare / Chaar kadam bas chaar kadam / Chal do na saath mere\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add a song/audio track to the one-page Propose Day website (e.g., background music with user-controlled play/pause and volume).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Use the song \"Chaar Kadam\" as the background track (male-sung portion) and add a subtle fade-in effect when the song starts playing.",
       "reqIds": [],
       "status": "pending"
     }

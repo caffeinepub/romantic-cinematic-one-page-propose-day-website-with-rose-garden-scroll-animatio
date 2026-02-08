@@ -2,27 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-in-frontend-src-components-proposedaypage-tsx-update-the-love-letter-section-heading-text-from-my-dearest-love-to-exactly-meri-makhan-mishri-and-render-a-cute-floating-heart-next-to-the-heading-with-a-gentle-looping-animation-that-matches-the-site-s-soft-cinematic-style",
-      "featureTitle": "In `frontend/src/components/ProposeDayPage.tsx`, update the Love Letter section heading text from \"My Dearest Love\" to exactly \"Meri Makhan Mishri\", and render a cute floating heart next to the heading with a gentle looping animation that matches the site’s soft cinematic style.",
-      "files": [
-        "frontend/src/components/ProposeDayPage.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-14"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-in-frontend-src-components-proposedaypage-tsx-replace-the-entire-love-letter-section-body-text-currently-starting-with-there-are-moments-in-life-when-words-feel-inadequate-with-the-user-provided-new-narrative-text-preserving-the-wording-exactly-including-punctuation-capitalization-and-quoted-lyrics",
-      "featureTitle": "In `frontend/src/components/ProposeDayPage.tsx`, replace the entire Love Letter section body text (currently starting with \"There are moments in life when words feel inadequate...\") with the user-provided new narrative text, preserving the wording exactly (including punctuation, capitalization, and quoted lyrics).",
+      "featureId": "feature-replace-the-current-background-audio-track-used-by-the-audio-element-in-frontend-src-components-proposedaypage-tsx-currently-src-assets-audio-propose-day-song-mp3-with-an-audio-file-that-contains-the-song-chaar-kadam-using-the-male-sung-portion-of-the-lyrics-stored-as-a-static-asset-under-frontend-public-assets-audio",
+      "featureTitle": "Replace the current background audio track used by the <audio> element in `frontend/src/components/ProposeDayPage.tsx` (currently `src=\"/assets/audio/propose-day-song.mp3\"`) with an audio file that contains the song “Chaar Kadam” using the male-sung portion of the lyrics, stored as a static asset under `frontend/public/assets/audio/`.",
       "files": [
         "frontend/src/components/ProposeDayPage.tsx"
       ],
@@ -34,7 +15,25 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-15"
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-subtle-fade-in-effect-when-music-playback-starts-from-the-play-button-in-frontend-src-components-proposedaypage-tsx-so-the-audio-ramps-from-silence-to-the-user-s-current-effective-volume-respecting-mute-volume-state-and-reduced-motion-preference-over-a-short-duration",
+      "featureTitle": "Add a subtle fade-in effect when music playback starts from the Play button in `frontend/src/components/ProposeDayPage.tsx`, so the audio ramps from silence to the user’s current effective volume (respecting mute/volume state and reduced-motion preference) over a short duration.",
+      "files": [
+        "frontend/src/components/ProposeDayPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
       ],
       "confidence": "high"
     }

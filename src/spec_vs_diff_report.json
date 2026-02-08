@@ -1,33 +1,24 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T07:15:20.751Z",
-  "summary": "REQ-14 appears implemented: Love Letter heading text changed to \"Meri Makhan Mishri\" and a Heart icon is rendered immediately next to the heading with an animation class that is disabled when `prefersReducedMotion` is true. REQ-15 appears partially implemented: the Love Letter body starts with the new provided narrative and the old text is not shown in the visible portion, but the diff is truncated so the full word-for-word replacement cannot be verified.",
+  "generatedAt": "2026-02-08T09:04:42.297Z",
+  "summary": "REQ-21 fade-in on Play appears implemented in ProposeDayPage.tsx with requestAnimationFrame, reduced-motion shortening, and mute/volume respect. REQ-20 updates the <audio> src to a new Chaar Kadam male-portion filename, but the diff does not show the required audio file being added under frontend/public/assets/audio/.",
   "missing_requirements": [
     {
-      "id": "REQ-15",
-      "requirement": "Replace the entire Love Letter section body text with the user-provided new narrative text exactly (word-for-word, including punctuation/capitalization/quoted lyrics).",
-      "reason": "`frontend/src/components/ProposeDayPage.tsx` is truncated mid-paragraph, so it’s not possible to confirm from the diff summary that the full narrative text (including the later paragraphs) matches exactly and that all previous Love Letter paragraphs are fully removed.",
+      "id": "REQ-20",
+      "requirement": "A single audio file containing the male-sung portion of “Chaar Kadam” exists under `frontend/public/assets/audio/`.",
+      "reason": "The diff summary shows no added files, and no evidence of an audio asset being added to `frontend/public/assets/audio/`; only the code reference was updated to point to `/assets/audio/chaar-kadam-male-portion.mp3`.",
       "evidence": [
-        "frontend/src/components/ProposeDayPage.tsx (truncated)"
+        "file-diff summary: Added: 0",
+        "frontend/src/components/ProposeDayPage.tsx"
       ]
     }
   ],
-  "hallucinated_features": [
-    {
-      "description": "Global styling/animation changes beyond the Love Letter update (e.g., expanded palette tokens/utilities, global reduced-motion overrides, additional animation keyframes/utilities).",
-      "reason": "BuildRequest scope is limited to updating the Love Letter heading and body; modifications to `frontend/src/index.css` indicate broader site-wide changes not explicitly requested.",
-      "evidence": [
-        "frontend/src/index.css (truncated)",
-        "frontend-file-summaries.txt (describes added animations and styling beyond Love Letter)"
-      ]
-    }
-  ],
-  "confidence": 0.62,
+  "hallucinated_features": [],
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/components/ProposeDayPage.tsx",
-    "frontend/src/index.css",
     "project_state.json"
   ]
 }

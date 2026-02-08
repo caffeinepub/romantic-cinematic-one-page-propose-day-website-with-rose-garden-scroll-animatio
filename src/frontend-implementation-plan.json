@@ -1,43 +1,42 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update Love Letter heading text, add animated heart, and replace Love Letter narrative",
+  "title": "Swap background audio to 'Chaar Kadam' (male portion) and add play fade-in",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Change Love Letter heading to “Meri Makhan Mishri” and add a gentle floating heart animation with reduced-motion support and decorative semantics.",
+      "id": "REQ-20",
+      "summary": "Replace ProposeDayPage background audio with a licensed static 'Chaar Kadam' (male-sung portion) track under frontend/public/assets/audio/ and wire it into the existing <audio> element.",
       "acceptanceCriteria": [
-        "The Love Letter section heading displays exactly: \"Meri Makhan Mishri\".",
-        "A heart element is visibly placed next to the \"Meri Makhan Mishri\" heading (not elsewhere in the section).",
-        "The heart has a gentle looping float/pulse-style animation (not flashy or jittery).",
-        "If the user prefers reduced motion, the heart animation is disabled (heart still renders)."
+        "A single audio file containing the male-sung portion of “Chaar Kadam” exists under `frontend/public/assets/audio/`.",
+        "`frontend/src/components/ProposeDayPage.tsx` references the new static audio asset path in the `<audio>` element `src` attribute.",
+        "Clicking the existing Play button plays the new “Chaar Kadam” (male part) audio in a loop, and Pause stops playback."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/ProposeDayPage.tsx",
-          "operation": "modify",
-          "description": "Update the Love Letter section heading text to exactly “Meri Makhan Mishri”, and render a decorative heart immediately adjacent to the heading (e.g., within the same h2 layout). Use reduced-motion logic (via existing usePrefersReducedMotion) to conditionally disable the heart’s animation while still rendering the heart; ensure decorative semantics (e.g., aria-hidden) so it does not interfere with heading readability/accessibility."
+          "path": "frontend/public/assets/audio/chaar-kadam-male-portion.mp3",
+          "operation": "create",
+          "description": "Add the single, licensed audio file containing ONLY the male-sung portion of “Chaar Kadam”. Ensure you have legal rights to embed/distribute this asset and keep it as a static file under frontend/public/assets/audio/."
         },
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/components/ProposeDayPage.tsx",
           "operation": "modify",
-          "description": "Add a gentle, cinematic-style looping heart float/pulse animation (keyframes + a utility class such as an animate/heart class) that can be toggled off when reduced motion is preferred. Keep animation subtle (smooth translate + slight scale/opacity) and aligned with the existing romantic aesthetic."
+          "description": "Update the existing <audio> element src from the current propose-day-song.mp3 to `/assets/audio/chaar-kadam-male-portion.mp3`, keeping loop and existing Play/Pause behavior user-initiated (no autoplay)."
         }
       ]
     },
     {
-      "id": "REQ-15",
-      "summary": "Replace the Love Letter section body with the provided new narrative text exactly while keeping existing prose typography.",
+      "id": "REQ-21",
+      "summary": "Implement a subtle, user-initiated fade-in ramp for audio volume on Play that respects mute/volume state and reduced-motion preference.",
       "acceptanceCriteria": [
-        "The previous Love Letter body paragraphs (the four <p> blocks beginning with \"There are moments in life when words feel inadequate...\") are fully removed/replaced.",
-        "The Love Letter body displays the following text exactly (word-for-word): \"I was searching the long lost peace which I didn't find even in the presence of my parents, but as I grew up I found a lil of it in the temple where I used to act like a complete idiot when  I was a kid. I got into Gods and tales there was a time I used to call myself an Avatar of God, funny right?\n \nIts just I felt like I found myself happy from the very core of my heart when I was unbothered by the world and lost in the peace resides deep in my heart. Its true that I was in the plans of shifting to Himalayas and I used to listen and relate to that song which goes like, 'maybe my soul mate died or I don't have a soul.' I was completely prepared of earning a load of fortune then giving it o my parents and then going to meditate in the caves of Himalaya, and the first step of the plan was to succesfully completing 12th and after that just hustling my ass off to vanish from existence. Luckily you came on the perfect time or else we would've met a couple of years later.\n\nYes even though I would've been in Himalayas  destiny would've brought together again, again and again. It won't stop doing intentional coincidences, planned accidents and heartful mischief cuz for how long can a soul remain away from itself. I used to think that why do people change in love but now I know, people don't change, the change is the outcome of a soul reuniting and becoming one again. The way I am merged in you once and for all my soul.\"",
-        "The Love Letter typography remains consistent with the current styling (prose + readable sizes on mobile/desktop)."
+        "When the user presses Play, the music starts at (or near) 0 volume and fades up smoothly to the current target volume within ~1–3 seconds.",
+        "The fade-in respects the current volume slider value and mute state (i.e., if muted, playback remains silent).",
+        "If `prefers-reduced-motion` is enabled, the fade-in is either disabled or shortened to avoid motion/discomfort while still starting playback correctly."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/ProposeDayPage.tsx",
           "operation": "modify",
-          "description": "Replace the entire Love Letter section body content by removing the existing four paragraph blocks and inserting the user-provided narrative text verbatim (including punctuation, capitalization, spacing, and quoted lyrics). Preserve the current prose/typography styling by keeping the existing prose container and ensuring line breaks/new paragraphs render readably (e.g., whitespace handling) across mobile and desktop."
+          "description": "Enhance Play behavior to apply a fade-in: on Play, set the audio element volume to ~0 (or stay at 0 if muted/volume=0), start playback, then ramp volume up to the effective target (respecting current slider + mute) over ~1–3 seconds using a cancellable timer/animation (e.g., requestAnimationFrame). Cancel the fade if Pause is pressed mid-ramp; if prefersReducedMotion is true, disable or shorten the ramp while still starting playback correctly."
         }
       ]
     }

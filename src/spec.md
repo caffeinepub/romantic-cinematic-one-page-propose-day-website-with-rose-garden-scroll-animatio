@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the Love Letter section heading and body text, and add a subtle animated heart beside the heading.
+**Goal:** Update the Propose Day page to use the “Chaar Kadam” (male-sung portion) audio as the background track and add a subtle fade-in when playback starts.
 
 **Planned changes:**
-- In `frontend/src/components/ProposeDayPage.tsx`, change the Love Letter heading text to exactly “Meri Makhan Mishri” and place a cute heart element directly next to the heading.
-- Add a gentle looping float/pulse animation to the heart, and disable the animation when the user prefers reduced motion (heart still visible).
-- Replace the entire existing Love Letter body text with the provided new narrative, preserving the wording exactly while keeping the current typography styling consistent.
+- Add a single static audio file containing the male-sung portion of “Chaar Kadam” under `frontend/public/assets/audio/`.
+- Update `frontend/src/components/ProposeDayPage.tsx` to reference the new audio asset in the existing `<audio>` element.
+- Implement a subtle fade-in on Play (about 1–3 seconds) that respects the current volume/mute state and honors `prefers-reduced-motion` by disabling or shortening the fade.
 
-**User-visible outcome:** The Love Letter section shows the new “Meri Makhan Mishri” heading with a softly animated heart beside it, and the letter content is fully replaced with the new provided text.
+**User-visible outcome:** When the user clicks Play, the “Chaar Kadam” (male part) track plays in a loop with a gentle fade-in, and Pause stops playback.

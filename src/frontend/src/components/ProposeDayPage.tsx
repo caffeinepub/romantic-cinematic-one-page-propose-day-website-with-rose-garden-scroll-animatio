@@ -1,13 +1,108 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Section from './Section';
 import RoseDecorations from './RoseDecorations';
 import FinalReveal from './FinalReveal';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
-import { Heart } from 'lucide-react';
+import { Heart, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Button } from './ui/button';
+import { Slider } from './ui/slider';
 
 export default function ProposeDayPage() {
   const [showFinalMessage, setShowFinalMessage] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
+  
+  // Music controls state
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const fadeIntervalRef = useRef<number | null>(null);
+
+  // Update audio volume when volume state changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = isMuted ? 0 : volume;
+    }
+  }, [volume, isMuted]);
+
+  // Cleanup fade interval on unmount
+  useEffect(() => {
+    return () => {
+      if (fadeIntervalRef.current !== null) {
+        cancelAnimationFrame(fadeIntervalRef.current);
+      }
+    };
+  }, []);
+
+  const fadeInAudio = () => {
+    if (!audioRef.current) return;
+
+    const targetVolume = isMuted ? 0 : volume;
+    
+    // If reduced motion is preferred, skip fade or use very short duration
+    const fadeDuration = prefersReducedMotion ? 300 : 2000; // 0.3s vs 2s
+    const startTime = performance.now();
+    const startVolume = 0;
+
+    const animate = (currentTime: number) => {
+      if (!audioRef.current) return;
+
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / fadeDuration, 1);
+      
+      // Ease-in-out curve for smoother fade
+      const easedProgress = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      const currentVolume = startVolume + (targetVolume - startVolume) * easedProgress;
+      audioRef.current.volume = currentVolume;
+
+      if (progress < 1) {
+        fadeIntervalRef.current = requestAnimationFrame(animate);
+      } else {
+        fadeIntervalRef.current = null;
+      }
+    };
+
+    // Cancel any existing fade
+    if (fadeIntervalRef.current !== null) {
+      cancelAnimationFrame(fadeIntervalRef.current);
+    }
+
+    // Start fade-in
+    audioRef.current.volume = 0;
+    fadeIntervalRef.current = requestAnimationFrame(animate);
+  };
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        // Cancel fade if pausing mid-fade
+        if (fadeIntervalRef.current !== null) {
+          cancelAnimationFrame(fadeIntervalRef.current);
+          fadeIntervalRef.current = null;
+        }
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+        fadeInAudio();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
+  const handleVolumeChange = (values: number[]) => {
+    const newVolume = values[0];
+    setVolume(newVolume);
+    if (newVolume > 0 && isMuted) {
+      setIsMuted(false);
+    }
+  };
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -24,6 +119,58 @@ export default function ProposeDayPage() {
       
       {/* Rose decorations */}
       <RoseDecorations />
+
+      {/* Audio element */}
+      <audio
+        ref={audioRef}
+        src="/assets/audio/chaar-kadam-male-portion.mp3"
+        loop
+        onEnded={() => setIsPlaying(false)}
+      />
+
+      {/* Music Controls - Fixed position */}
+      <div className="fixed bottom-6 right-6 z-50 bg-white/90 backdrop-blur-sm rounded-2xl shadow-romantic p-4 border border-rose-medium/20">
+        <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={togglePlay}
+            aria-label={isPlaying ? 'Pause music' : 'Play music'}
+            className="h-10 w-10 rounded-full hover:bg-rose-soft/50 text-rose-deep"
+          >
+            {isPlaying ? (
+              <Pause className="h-5 w-5" />
+            ) : (
+              <Play className="h-5 w-5" />
+            )}
+          </Button>
+          
+          <div className="flex items-center gap-2 min-w-[120px]">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleMute}
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+              className="h-8 w-8 rounded-full hover:bg-rose-soft/50 text-rose-deep"
+            >
+              {isMuted || volume === 0 ? (
+                <VolumeX className="h-4 w-4" />
+              ) : (
+                <Volume2 className="h-4 w-4" />
+              )}
+            </Button>
+            
+            <Slider
+              value={[isMuted ? 0 : volume]}
+              onValueChange={handleVolumeChange}
+              max={1}
+              step={0.01}
+              className="w-20"
+              aria-label="Volume"
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Main content */}
       <main className="relative z-10">
@@ -81,88 +228,6 @@ export default function ProposeDayPage() {
             </div>
           </Section>
 
-          {/* Memories Section */}
-          <Section className="py-24 sm:py-32">
-            <div className="space-y-12">
-              <h2 className="font-serif text-4xl sm:text-5xl font-light text-rose-deep text-center mb-16">
-                Our Journey Together
-              </h2>
-              <div className="space-y-16">
-                <div className="space-y-4">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-rose-medium font-light">
-                    The Beginning
-                  </h3>
-                  <p className="text-lg sm:text-xl text-rose-dark/90 leading-relaxed font-light">
-                    I remember the nervous excitement of our first conversation, how time seemed to stop when 
-                    you laughed. I remember thinking, "This is someone special. This is someone who could change 
-                    everything." And you did. You changed everything in the most beautiful way.
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-rose-medium font-light">
-                    Growing Together
-                  </h3>
-                  <p className="text-lg sm:text-xl text-rose-dark/90 leading-relaxed font-light">
-                    Through seasons and storms, through quiet mornings and starlit nights, we've built something 
-                    extraordinary. Every shared dream, every whispered secret, every moment of vulnerability has 
-                    woven our hearts closer together. We've learned to dance in the rain and find joy in the 
-                    simplest moments—a cup of coffee shared, a sunset watched in comfortable silence, a hand held 
-                    through uncertainty.
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-rose-medium font-light">
-                    This Moment
-                  </h3>
-                  <p className="text-lg sm:text-xl text-rose-dark/90 leading-relaxed font-light">
-                    And now, here we are. Every step of our journey has led to this moment, this question, this 
-                    leap of faith into forever. Looking back, I see a path lined with roses—some blooming, some 
-                    yet to open, but all beautiful, all ours.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Section>
-
-          {/* Poem Section */}
-          <Section className="py-24 sm:py-32">
-            <div className="space-y-12">
-              <h2 className="font-serif text-4xl sm:text-5xl font-light text-rose-deep text-center mb-16">
-                A Poem for You
-              </h2>
-              <div className="max-w-2xl mx-auto">
-                <div className="space-y-8 text-center font-serif text-lg sm:text-xl text-rose-dark/90 leading-loose italic">
-                  <p>
-                    In gardens where the roses bloom,<br />
-                    I found my heart, I found my home.<br />
-                    Each petal soft, each thorn a truth—<br />
-                    That love is wild, that love is proof.
-                  </p>
-                  <p>
-                    You are the dawn that breaks the night,<br />
-                    The gentle touch, the guiding light.<br />
-                    In your embrace, I've come to see<br />
-                    The person I was meant to be.
-                  </p>
-                  <p>
-                    So here I stand with open heart,<br />
-                    No longer two, but one, not apart.<br />
-                    With every breath, with every day,<br />
-                    I choose you, love, in every way.
-                  </p>
-                  <p>
-                    Like roses reaching for the sun,<br />
-                    Our story's only just begun.<br />
-                    Forever starts with this one choice—<br />
-                    To love you with my heart and voice.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Section>
-
           {/* Final Proposal Section */}
           <Section className="py-24 sm:py-32 pb-40">
             <div className="space-y-16 text-center">
@@ -170,10 +235,11 @@ export default function ProposeDayPage() {
                 <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-rose-deep leading-tight">
                   Will You Be Mine?
                 </h2>
-                <p className="font-serif text-xl sm:text-2xl text-rose-medium/90 max-w-2xl mx-auto leading-relaxed">
-                  Today, on this Propose Day, I ask you the question my heart has been whispering since the 
-                  moment we met. Will you walk with me through all the seasons of life? Will you let me love 
-                  you, cherish you, and build a lifetime of memories with you?
+                <p className="font-serif text-xl sm:text-2xl text-rose-medium/90 max-w-2xl mx-auto leading-relaxed whitespace-pre-line">
+                  {`Bin puchhe mera naam aur pata
+Rasmon ko rakh ke pare
+Chaar kadam bas chaar kadam
+Chal do na saath mere`}
                 </p>
               </div>
               
